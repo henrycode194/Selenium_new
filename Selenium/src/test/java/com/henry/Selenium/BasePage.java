@@ -11,7 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
- 
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
  
 import org.openqa.selenium.By;
@@ -87,10 +88,15 @@ public class BasePage {
     }
    
     public void waitForElementClickable(By selector, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(selector));    
     }
    
+    public void waitForElement(By selector, int timeout) {
+    	WebDriverWait ewait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+    	ewait.until(ExpectedConditions.presenceOfElementLocated(selector));
+    	
+    }
     public void switchToFrame (String idFrame) {
                driver.switchTo().frame(idFrame);
     }
