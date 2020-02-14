@@ -122,6 +122,13 @@ public class BasePage {
                JavascriptExecutor executor = (JavascriptExecutor)driver;
                executor.executeScript("arguments[0].click();", element);
      }
+    
+    public void scrollToElement(By locator) {
+    	//Scroll to Element
+    	WebElement element = driver.findElement(locator);
+    	JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();",element);
+    }
    
     public void pressTabKeyOverLocator (By locator) {
                driver.findElement(locator).sendKeys(Keys.TAB);

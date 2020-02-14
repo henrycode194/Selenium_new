@@ -8,11 +8,27 @@ import org.apache.poi.ss.formula.functions.Value;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.internal.TextListener;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DateDrivenTesting_SWD_Test {
+	
+	public static void main(String args[]) {
+        JUnitCore junit = new JUnitCore();
+        junit.addListener(new TextListener(System.out));
+        Result result = junit.run(DateDrivenTesting_SWD_Test.class); // Replace "SampleTest" with the name of your class
+        if (result.getFailureCount() > 0) {
+          System.out.println("Test failed.");
+          System.exit(1);
+        } else {
+          System.out.println("Test finished successfully.");
+          System.exit(0);
+        }
+      }
 
 	private WebDriver driver;
 	private WriteExcelFile writeFile;
